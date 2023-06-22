@@ -9,6 +9,7 @@ setuptools.setup(
     version=version,
     install_requires=[
         'odoo-addon-l10n_es_account_asset>=16.0dev,<16.1dev',
+        'odoo-addon-l10n_es_account_banking_sepa_fsdd>=16.0dev,<16.1dev',
         'odoo-addon-l10n_es_account_statement_import_n43>=16.0dev,<16.1dev',
         'odoo-addon-l10n_es_aeat>=16.0dev,<16.1dev',
         'odoo-addon-l10n_es_aeat_mod111>=16.0dev,<16.1dev',
@@ -22,6 +23,7 @@ setuptools.setup(
         'odoo-addon-l10n_es_aeat_partner_check>=16.0dev,<16.1dev',
         'odoo-addon-l10n_es_aeat_sii_oca>=16.0dev,<16.1dev',
         'odoo-addon-l10n_es_dua>=16.0dev,<16.1dev',
+        'odoo-addon-l10n_es_dua_sii>=16.0dev,<16.1dev',
         'odoo-addon-l10n_es_facturae>=16.0dev,<16.1dev',
         'odoo-addon-l10n_es_igic>=16.0dev,<16.1dev',
         'odoo-addon-l10n_es_irnr>=16.0dev,<16.1dev',
