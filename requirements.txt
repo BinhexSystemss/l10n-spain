@@ -1,6 +1,9 @@
 # generated from manifests external_dependencies
 chardet
 cryptography
+deepdiff
+pycountry
+pycryptodome
 qrcode
 requests
 requests_pkcs12

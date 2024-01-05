@@ -10,14 +10,15 @@ odoo.define("l10n_es_pos.models", function (require) {
     const Registries = require("point_of_sale.Registries");
     const {isConnectionError} = require("point_of_sale.utils");
     const {ConnectionLostError} = require("@web/core/network/rpc_service");
+    const field_utils = require("web.field_utils");
 
     const L10NESGlobalState = (PosGlobalState) =>
         class L10NESGlobalState extends PosGlobalState {
             constructor() {
                 super(...arguments);
                 this.pushed_simple_invoices = [];
-
-                this.own_simplified_invoice_prefix = ""; // Unique UUID
+                // Unique UUID
+                this.own_simplified_invoice_prefix = "";
             }
             get_simple_inv_next_number() {
                 // If we had pending orders to sync we want to avoid getting the next number
@@ -137,6 +138,11 @@ odoo.define("l10n_es_pos.models", function (require) {
                 super.init_from_JSON(...arguments);
                 this.to_invoice = json.to_invoice;
                 this.l10n_es_unique_id = json.l10n_es_unique_id;
+                this.formatted_validation_date = field_utils.format.datetime(
+                    moment(this.validation_date),
+                    {},
+                    {timezone: false}
+                );
             }
             export_as_JSON() {
                 const res = super.export_as_JSON(...arguments);

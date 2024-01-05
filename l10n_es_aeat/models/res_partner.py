@@ -47,8 +47,26 @@ class ResPartner(models.Model):
         """
         country_code_map = {"EL": "GR"}
         if extended:
-            country_code_map.update({"RE": "FR", "GP": "FR", "MQ": "FR", "GF": "FR"})
+            country_code_map.update(
+                {
+                    "RE": "FR",
+                    "GP": "FR",
+                    "MQ": "FR",
+                    "GF": "FR",
+                    "PF": "FR",
+                    "BL": "FR",
+                    "MF": "FR",
+                    "PM": "FR",
+                    "WF": "FR",
+                }
+            )
         return country_code_map.get(country_code, country_code)
+
+    def _map_aeat_country_iso_code(self, country_id):
+        """Map country ISO code according to AEAT code"""
+        code = country_id.code
+        country_iso_code_map = {"GR": "EL"}
+        return country_iso_code_map.get(code, code)
 
     @ormcache("self.env")
     def _get_aeat_europe_codes(self):
