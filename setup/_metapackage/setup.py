@@ -28,6 +28,7 @@ setuptools.setup(
         'odoo-addon-l10n_es_aeat_mod303>=15.0dev,<15.1dev',
         'odoo-addon-l10n_es_aeat_mod303_oss>=15.0dev,<15.1dev',
         'odoo-addon-l10n_es_aeat_mod347>=15.0dev,<15.1dev',
+        'odoo-addon-l10n_es_aeat_mod347_igic>=15.0dev,<15.1dev',
         'odoo-addon-l10n_es_aeat_mod349>=15.0dev,<15.1dev',
         'odoo-addon-l10n_es_aeat_mod369>=15.0dev,<15.1dev',
         'odoo-addon-l10n_es_aeat_mod390>=15.0dev,<15.1dev',
