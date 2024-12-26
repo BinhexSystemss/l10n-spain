@@ -41,7 +41,7 @@
                 <group
                     string="Resultado"
                     name="group_result"
-                    attrs="{'invisible': [('state', '=', 'draft')]}"
+                    invisible="state == 'draft'"
                     col="3"
                 >
                     <group>
@@ -114,7 +114,7 @@
 
                 <group
                     class="oe_subtotal_footer oe_right"
-                    attrs="{'invisible': [('state', '=', 'draft')]}"
+                    invisible="state == 'draft'"
                     colspan="2"
                 >
                     <field
@@ -128,14 +128,15 @@
                     <field
                         name="bank_account_id"
                         domain="[('partner_id', '=', company_partner_id)]"
-                        attrs="{'invisible': [('result_type', 'not in', ('D', 'B', 'I'))], 'required': [('result_type', '=', 'D')]}"
+                        invisible="result_type not in ('D', 'B', 'I')"
+                        required="result_type == 'D'"
                     />
                 </group>
                 <field
                     name="tax_line_ids"
                     nolabel="1"
                     readonly="1"
-                    attrs="{'invisible': [('state', '=', 'draft')]}"
+                    invisible="state == 'draft'"
                 />
 
             </group>
