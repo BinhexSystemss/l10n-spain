@@ -1,4 +1,4 @@
-"id","account_xmlid_ids/id","field_number","field_type","inverse","map_parent_id","move_type","name","sum_type","tax_xmlid_ids/id","to_regularize"
+"id","account_xmlid_ids/id","field_number","field_type","inverse","map_parent_id:id","move_type","name","sum_type","tax_xmlid_ids/id","to_regularize"
 "atc_mod420_map_line_01",,"01","base","False","atc_mod420_map","regular","IGICTipocero-Baseimponible0%","both","igic_r_0","False"
 "atc_mod420_map_line_04",,"04","base","False","atc_mod420_map","regular","IGICTiporeducido-Baseimponible3%/5%","both","igic_r_3,igic_r_5","False"
 "atc_mod420_map_line_07",,"07","base","False","atc_mod420_map","regular","IGICTipogeneral-Baseimponible7%","both","igic_r_7","False"

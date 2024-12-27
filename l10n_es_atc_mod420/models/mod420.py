@@ -18,6 +18,7 @@ class L10nEsAtcMod420Report(models.Model):
     def _default_counterpart_420(self):
         return self.env["account.account"].search(
             [
+                ("company_id", "=", self.env.company.id),
                 ("code", "like", "4757%"),
             ]
         )[:1]
