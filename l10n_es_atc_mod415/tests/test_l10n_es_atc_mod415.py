@@ -27,12 +27,13 @@ class TestL10nEsAtcMod415(TestL10nEsAeatModBase):
         cls.company = cls.env["res.company"].create(
             {"name": "Canary test company", "currency_id": cls.env.ref("base.EUR").id}
         )
-        cls.env["account.chart.template"].try_loading(
-            "es_pymes_canary", company=cls.company, install_demo=False
-        )
         cls.env.ref("base.group_multi_company").write({"users": [(4, cls.env.uid)]})
         cls.env.user.write(
             {"company_ids": [(4, cls.company.id)], "company_id": cls.company.id}
+        )
+        chart = cls.env["account.chart.template"]
+        chart.try_loading(
+            template_code="es_pymes_canary", company=cls.company, install_demo=False
         )
         cls.with_context(company_id=cls.company.id)
         return True
