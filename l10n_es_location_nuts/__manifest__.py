@@ -12,8 +12,6 @@
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    "depends": [
-        "base_location_nuts",
-    ],
+    "depends": ["base_location_nuts",],
     "post_init_hook": "post_init_hook",
 }

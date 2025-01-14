@@ -16,7 +16,5 @@ def post_init_hook(cr, registry):
         spain = env.ref("base.es")
         _logger.info("Setting Spain NUTS configuration")
         spain.write(
-            {
-                "state_level": 4,
-            }
+            {"state_level": 4,}
         )
