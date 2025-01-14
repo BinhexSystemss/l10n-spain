@@ -12,6 +12,8 @@ exclude: |
   /static/(src/)?lib/|
   # Repos using Sphinx to generate docs don't need prettying
   ^docs/_templates/.*\.html$|
+  # Ignore build and dist directories in addons
+  /build/|/dist/|
   # You don't usually want a bot to modify your legal texts
   (LICENSE.*|COPYING.*)
 default_language_version:
@@ -40,7 +42,7 @@ repos:
       - id: oca-fix-manifest-website
         args: ["https://github.com/OCA/l10n-spain"]
   - repo: https://github.com/myint/autoflake
-    rev: v1.4
+    rev: v2.3.1
     hooks:
       - id: autoflake
         args:
@@ -101,7 +103,7 @@ repos:
       - id: pyupgrade
         args: ["--keep-percent-format"]
   - repo: https://github.com/pre-commit/mirrors-isort
-    rev: v4.3.21
+    rev: v5.10.1
     hooks:
       - id: isort
         name: isort except __init__.py
