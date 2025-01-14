@@ -12,7 +12,6 @@ github_enable_makepot: true
 github_enable_stale_action: true
 github_enforce_dev_status_compatibility: true
 include_wkhtmltopdf: false
-odoo_test_flavor: Both
 odoo_version: 13.0
 org_name: Odoo Community Association (OCA)
 org_slug: OCA
@@ -24,4 +23,6 @@ repo_description: 'Repositorio de código del proyecto de la localización espa�
 repo_name: Localización española de Odoo
 repo_slug: l10n-spain
 repo_website: https://github.com/OCA/l10n-spain
+travis_apt_packages: []
+travis_apt_sources: []
 

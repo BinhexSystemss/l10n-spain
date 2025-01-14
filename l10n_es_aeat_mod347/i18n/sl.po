@@ -403,6 +403,7 @@ msgid "Community vat number"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__company_id
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__company_id
 msgid "Company"
 msgstr "Družba"
@@ -431,8 +432,8 @@ msgstr ""
 #. module: l10n_es_aeat_mod347
 #: model:mail.template,subject:l10n_es_aeat_mod347.email_template_347
 msgid ""
-"Comprobación datos de modelo 347 año ${object.report_id.year} de ${user."
-"company_id.name}"
+"Comprobación datos de modelo 347 año ${object.report_id.year} de ${object."
+"report_id.company_id.name}"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
