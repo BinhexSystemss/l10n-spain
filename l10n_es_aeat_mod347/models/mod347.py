@@ -381,6 +381,7 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
             ("exception", "Exception"),
         ],
         default="pending",
+        tracking=True,
     )
     operation_key = fields.Selection(
         selection=[
@@ -620,13 +621,15 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
         self.ensure_one()
         if self.operation_key not in ("A", "B"):
             return
+        prev_amount = self.amount
         self.report_id._create_partner_records(
             self.operation_key,
             KEY_TAX_MAPPING[self.operation_key],
             partner_record=self,
         )
         self.calculate_quarter_totals()
-        self.action_pending()
+        if float_compare(self.amount, prev_amount, 2) != 0:
+            self.action_pending()
 
     def send_email_direct(self):
         template = self.env.ref("l10n_es_aeat_mod347.email_template_347")
