@@ -4,11 +4,13 @@
 # Copyright 2015 Omar Castiñeira (Comunitea)
 # Copyright 2016-2020 Tecnativa - Pedro M. Baeza
 # Copyright 2022 Moduon - Eduardo de Miguel
+# Copyright 2022 NuoBiT - Eric Antones
+# Copyright 2024 Tecnativa - Carolina Fernandez
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 {
     "name": "Creación de Facturae",
-    "version": "16.0.1.0.0",
+    "version": "16.0.1.10.3",
     "author": "ASR-OSS, "
     "FactorLibre, "
     "Tecon, "
@@ -42,7 +44,7 @@
         "views/account_move_view.xml",
         "views/account_journal_view.xml",
     ],
-    "external_dependencies": {"python": ["pycountry", "xmlsig", "cryptography"]},
+    "external_dependencies": {"python": ["pycountry", "xmlsig"]},
     "installable": True,
     "maintainers": ["etobella"],
 }

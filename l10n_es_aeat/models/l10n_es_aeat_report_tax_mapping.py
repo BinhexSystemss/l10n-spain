@@ -1,5 +1,5 @@
-# Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
-# Copyright 2016-2017 Tecnativa - Pedro M. Baeza <pedro.baeza@tecnativa.com>
+# Copyright 2016 Tecnativa - Antonio Espinosa
+# Copyright 2016,2024 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import _, api, exceptions, fields, models
@@ -20,6 +20,14 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
         readonly=True,
         string="Tax lines",
     )
+    valued_tax_line_ids = fields.One2many(
+        comodel_name="l10n.es.aeat.tax.line",
+        inverse_name="res_id",
+        domain=lambda self: [("model", "=", self._name), ("amount", "!=", 0)],
+        auto_join=True,
+        readonly=True,
+        string="Valued tax lines",
+    )
 
     def calculate(self):
         res = super().calculate()
@@ -30,6 +38,7 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
             tax_code_map = (
                 self.env["l10n.es.aeat.map.tax"]
                 .sudo()
+                .with_context(active_test=False)
                 .search(
                     [
                         ("model", "=", report.number),
@@ -90,7 +99,11 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
         ]
         if map_line.move_type == "regular":
             move_line_domain.append(
-                ("move_id.financial_type", "in", ("receivable", "payable", "liquidity"))
+                (
+                    "move_id.financial_type",
+                    "in",
+                    ("receivable", "payable", "liquidity", "other"),
+                )
             )
         elif map_line.move_type == "refund":
             move_line_domain.append(

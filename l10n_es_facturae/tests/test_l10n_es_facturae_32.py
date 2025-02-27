@@ -2,10 +2,10 @@
 # Copyright 2017 Creu Blanca
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from .common import CommonTest
+from . import common
 
 
-class TestL10nEsFacturae(CommonTest):
+class TestL10nEsFacturae(common.CommonTest):
     def setUp(self):
         super().setUp()
         self.fe = "http://www.facturae.es/Facturae/2009/v3.2/Facturae"
@@ -16,4 +16,12 @@ class TestL10nEsFacturae(CommonTest):
             "133.22",
             "27.98",
             "57.090000",
+        ]
+        self.refund_check_amount = ["-100.000000", "-100.000000", "-100.00", "-21.00"]
+        self.refund_check_totals = ["-100.00", "-100.00", "-21.00", "-121.00"]
+        self.hided_discount_check_amount = [
+            "133.217000",
+            "133.220000",
+            "133.22",
+            "27.98",
         ]

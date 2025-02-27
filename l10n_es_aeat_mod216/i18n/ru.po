@@ -16,9 +16,9 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
-"%100>=11 && n%100<=14)? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
+"(n%100>=11 && n%100<=14)? 2 : 3);\n"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.ui.menu,name:l10n_es_aeat_mod216.menu_aeat_mod216_report
@@ -210,7 +210,6 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,help:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__message_has_error
-#: model:ir.model.fields,help:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr ""
 
@@ -341,7 +340,7 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,help:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__message_needaction_counter
-msgid "Number of messages which requires an action"
+msgid "Number of messages requiring action"
 msgstr ""
 
 #. module: l10n_es_aeat_mod216
@@ -395,11 +394,6 @@ msgid "Result: ([03] - [06])"
 msgstr ""
 
 #. module: l10n_es_aeat_mod216
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr ""
-
-#. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__date_start
 msgid "Starting date"
 msgstr ""
@@ -426,6 +420,11 @@ msgstr ""
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__support_type
 msgid "Support Type"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__tax_agency_ids
+msgid "Tax Agency"
 msgstr ""
 
 #. module: l10n_es_aeat_mod216
@@ -469,6 +468,11 @@ msgstr ""
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__company_vat
 msgid "VAT number"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report__valued_tax_line_ids
+msgid "Valued tax lines"
 msgstr ""
 
 #. module: l10n_es_aeat_mod216

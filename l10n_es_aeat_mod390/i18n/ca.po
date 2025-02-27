@@ -6,15 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-05-20 18:05+0000\n"
-"Last-Translator: jabelchi <jabelchi@gmail.com>\n"
+"PO-Revision-Date: 2023-06-23 13:11+0000\n"
+"Last-Translator: eccit-quim <quim@eccit.com>\n"
 "Language-Team: none\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: l10n_es_aeat_mod390
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod390.view_l10n_es_aeat_mod390_report_form
@@ -212,9 +212,16 @@ msgid "Bank account"
 msgstr "Compte bancari"
 
 #. module: l10n_es_aeat_mod390
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_account_bank_statement_line__is_bankrupcy_uncollectible_debt
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_account_move__is_bankrupcy_uncollectible_debt
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_account_payment__is_bankrupcy_uncollectible_debt
+msgid "Bankrupcy/uncollectible debt"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__calculation_date
 msgid "Calculation Date"
-msgstr ""
+msgstr "Data de càlcul"
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__company_id
@@ -229,7 +236,7 @@ msgstr "Compte bancari de la companyia utilitzat per a la presentació"
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__contact_email
 msgid "Contact Email"
-msgstr ""
+msgstr "Correu electrònic de contacte"
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__counterpart_account_id
@@ -264,7 +271,7 @@ msgstr "Codi 1ª activitat"
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__other_first_activity_code
 msgid "Código 1ª actividad (antiguo)"
-msgstr ""
+msgstr "Codi primera activitat (antic)"
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__other_second_activity_code_id
@@ -274,7 +281,7 @@ msgstr "Codi 2ª activitat"
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__other_second_activity_code
 msgid "Código 2ª actividad (antiguo)"
-msgstr ""
+msgstr "Codi 2ona activitat (antic)"
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__other_third_activity_code_id
@@ -284,7 +291,7 @@ msgstr "Codi 3ª activitat"
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__other_third_activity_code
 msgid "Código 3ª actividad (antiguo)"
-msgstr ""
+msgstr "Codi 3era activitat (antic)"
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__other_fourth_activity_code_id
@@ -294,7 +301,7 @@ msgstr "Codi 4ª activitat"
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__other_fourth_activity_code
 msgid "Código 4ª actividad (antiguo)"
-msgstr ""
+msgstr "Codi 4a activitat (antic)"
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__other_fifth_activity_code_id
@@ -304,7 +311,7 @@ msgstr "Codi 5ª activitat"
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__other_fifth_activity_code
 msgid "Código 5ª actividad (antiguo)"
-msgstr ""
+msgstr "Codi 5ena activitat (antic)"
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__main_activity_code_id
@@ -314,7 +321,7 @@ msgstr "Codi activitat principal"
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__main_activity_code
 msgid "Código actividad principal (antiguo)"
-msgstr ""
+msgstr "Codi activitat principal (antic)"
 
 #. module: l10n_es_aeat_mod390
 #. odoo-python
@@ -373,12 +380,12 @@ msgstr "Epígraf I.A.E. activitat principal"
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__error_count
 msgid "Error Count"
-msgstr ""
+msgstr "Recompte d'errors"
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__export_config_id
 msgid "Export config"
-msgstr "Export config"
+msgstr "Exportar la configuració"
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__first_representative_date
@@ -418,7 +425,7 @@ msgstr "Nom complet"
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__has_message
 msgid "Has Message"
-msgstr ""
+msgstr "Té missatge"
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__id
@@ -442,9 +449,23 @@ msgstr "Si està marcat, hi ha missatges que requereixen la vostra atenció."
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__message_has_error
-#: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Si està marcat, hi ha missatges que tenen un error de lliurament."
+
+#. module: l10n_es_aeat_mod390
+#: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__use_303
+msgid ""
+"If it's checked, this report uses 303 reports for calculate fields 85, 95, "
+"97, 98 and 662. When it's unchecked, you should fill them in. If you "
+"calculated first and then checked this option, you must calculate it again."
+msgstr ""
+
+#. module: l10n_es_aeat_mod390
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod390.view_l10n_es_aeat_mod390_report_form
+msgid ""
+"If you do not want to use the 303 reports for the automatic calculation,\n"
+"                        uncheck \"<b>Use 303 reports</b>\" option."
+msgstr ""
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__message_is_follower
@@ -457,14 +478,19 @@ msgid "Journal"
 msgstr "Diari"
 
 #. module: l10n_es_aeat_mod390
+#: model:ir.model,name:l10n_es_aeat_mod390.model_account_move
+msgid "Journal Entry"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__journal_id
 msgid "Journal in which post the move."
-msgstr "Diari per a publicar el moviment."
+msgstr "Diari on es publicarà el moviment."
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__representative_vat
 msgid "L.R. VAT number"
-msgstr "NIF representant legal"
+msgstr "NIF repr. legal"
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report____last_update
@@ -609,8 +635,8 @@ msgstr "Nombre d'errors"
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__message_needaction_counter
-msgid "Number of messages which requires an action"
-msgstr "Nombre de missatges que requereixen una acció"
+msgid "Number of messages requiring action"
+msgstr ""
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__message_has_error_counter
@@ -650,7 +676,7 @@ msgstr "Empresa"
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__period_type
 msgid "Period Type"
-msgstr ""
+msgstr "Tipus de període"
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__contact_phone
@@ -678,9 +704,13 @@ msgid "Responsible User"
 msgstr "Usuari responsable"
 
 #. module: l10n_es_aeat_mod390
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr "Error de lliurament SMS"
+#: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__casilla_85
+msgid ""
+"Se consignará el importe de las cuotas pendientes de compensación generadas "
+"en ejercicios anteriores y aplicadas en el ejercicio (es decir, que se "
+"hubiesen consignado en la casilla 78 de alguna de las autoliquidaciones del "
+"periodo)."
+msgstr ""
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__casilla_95
@@ -721,19 +751,6 @@ msgstr ""
 "aquesta casella l'import de la mateixa."
 
 #. module: l10n_es_aeat_mod390
-#: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__casilla_85
-msgid ""
-"Si en la autoliquidación del último período del ejercicio anterior resultó "
-"un saldo a su favor y usted optó por la compensación, consigne en esta "
-"casilla la cantidad a compensar, salvo que la misma haya sido modificada por "
-"la Administración, en cuyo caso se consignará esta última."
-msgstr ""
-"Si en l'autoliquidació del darrer període de l'exercici anterior va resultar "
-"un saldo al seu favor i vau optar per la compensació, consigneu en aquesta "
-"casella la quantitat a compensar, tret que la mateixa hagi estat modificada "
-"per l'Administració. En aquest cas es consignarà aquesta darrera."
-
-#. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__date_start
 msgid "Starting date"
 msgstr "Data inicial"
@@ -767,6 +784,11 @@ msgid "Support Type"
 msgstr "Tipus de suport"
 
 #. module: l10n_es_aeat_mod390
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__tax_agency_ids
+msgid "Tax Agency"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__tax_line_ids
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod390.view_l10n_es_aeat_mod390_report_form
 msgid "Tax lines"
@@ -782,13 +804,10 @@ msgstr "Tercer representant"
 #: code:addons/l10n_es_aeat_mod390/models/mod390.py:0
 #, python-format
 msgid ""
-"The result of the manual 303 summary (fields [95], [97] and [98] in the page "
-"'9. Resultado liquidaciones') doesn't match the field [86]. Please check if "
-"you have filled such fields."
+"The result of the manual 303 summary (fields [95], [97], [98] and [662] in "
+"the page '9. Resultado liquidaciones') doesn't match the field [86]. Please "
+"check if you have filled such fields."
 msgstr ""
-"El resultat del resum manual del 303 (caselles [95], [97] i [98] a la pàgina "
-"'9. Resultat liquidacions') no casa amb la casella [86]. Si us plau, "
-"comproveu que les heu omplert."
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__counterpart_account_id
@@ -800,14 +819,34 @@ msgstr ""
 "estan regularitzats al comptabilitzar l'informe."
 
 #. module: l10n_es_aeat_mod390
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod390.view_l10n_es_aeat_mod390_report_form
+msgid ""
+"This is using the 303 reports for automatic calculations in the <b>fields "
+"85, 95, 97, 98 and 662</b>. The calculations\n"
+"                        may not be correct if there are duplicated or out-of-"
+"date 303 reports."
+msgstr ""
+
+#. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__activity_exception_decoration
 msgid "Type of the exception activity on record."
 msgstr "Tipus d'activitat d'excepció al registre."
 
 #. module: l10n_es_aeat_mod390
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__use_303
+msgid "Use 303 reports"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__company_vat
 msgid "VAT number"
 msgstr "NIF"
+
+#. module: l10n_es_aeat_mod390
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__valued_tax_line_ids
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod390.view_l10n_es_aeat_mod390_report_form
+msgid "Valued tax lines"
+msgstr ""
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__website_message_ids
@@ -818,6 +857,15 @@ msgstr "Missatges del lloc web"
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__website_message_ids
 msgid "Website communication history"
 msgstr "Historial de comunicacions del lloc web"
+
+#. module: l10n_es_aeat_mod390
+#: model:ir.model.fields,help:l10n_es_aeat_mod390.field_account_bank_statement_line__is_bankrupcy_uncollectible_debt
+#: model:ir.model.fields,help:l10n_es_aeat_mod390.field_account_move__is_bankrupcy_uncollectible_debt
+#: model:ir.model.fields,help:l10n_es_aeat_mod390.field_account_payment__is_bankrupcy_uncollectible_debt
+msgid ""
+"When this is set, the tax base and rate will be reflected in fields 31 and "
+"32 of the AEAT 390 model"
+msgstr ""
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__year
@@ -934,9 +982,31 @@ msgid "[64] Suma de deducciones"
 msgstr "[64] Suma de deduccions"
 
 #. module: l10n_es_aeat_mod390
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__casilla_658
+msgid "[658] Regularización cuotas art. 80. Cinco.5ª LIVA"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__casilla_65
 msgid "[65] Result. rég. gral."
-msgstr "[65] Result. rég. gral."
+msgstr "[65] Result. règ. gral."
+
+#. module: l10n_es_aeat_mod390
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__casilla_662
+msgid "[662] Cuotas pendientes de compensación al término del ejercicio"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390
+#: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__casilla_662
+msgid ""
+"[662] Cuotas pendientes de compensación generadas en el ejercicio y "
+"distintas de las incluidas en la casilla 97"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__casilla_84
+msgid "[84] Suma de resultados"
+msgstr ""
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__casilla_85
@@ -967,6 +1037,34 @@ msgstr "[98] Result. 303 darrer període a tornar"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__has_347
 msgid "¿Obligación del 347?"
 msgstr "Obligació del 347?"
+
+#~ msgid ""
+#~ "Si en la autoliquidación del último período del ejercicio anterior "
+#~ "resultó un saldo a su favor y usted optó por la compensación, consigne en "
+#~ "esta casilla la cantidad a compensar, salvo que la misma haya sido "
+#~ "modificada por la Administración, en cuyo caso se consignará esta última."
+#~ msgstr ""
+#~ "Si en l'autoliquidació del darrer període de l'exercici anterior va "
+#~ "resultar un saldo al seu favor i vau optar per la compensació, consigneu "
+#~ "en aquesta casella la quantitat a compensar, tret que la mateixa hagi "
+#~ "estat modificada per l'Administració. En aquest cas es consignarà aquesta "
+#~ "darrera."
+
+#, python-format
+#~ msgid ""
+#~ "The result of the manual 303 summary (fields [95], [97] and [98] in the "
+#~ "page '9. Resultado liquidaciones') doesn't match the field [86]. Please "
+#~ "check if you have filled such fields."
+#~ msgstr ""
+#~ "El resultat del resum manual del 303 (caselles [95], [97] i [98] a la "
+#~ "pàgina '9. Resultat liquidacions') no casa amb la casella [86]. Si us "
+#~ "plau, comproveu que les heu omplert."
+
+#~ msgid "SMS Delivery error"
+#~ msgstr "Error de lliurament SMS"
+
+#~ msgid "Number of messages which requires an action"
+#~ msgstr "Nombre de missatges que requereixen una acció"
 
 #~ msgid "Model"
 #~ msgstr "Model"

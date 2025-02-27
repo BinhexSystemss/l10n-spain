@@ -692,6 +692,15 @@ class TestL10nEsTicketBAIAPI(common.TransactionCase):
         company.write(vals)
 
     def _prepare_company(self, company):
+        if not company.chart_template_id:
+            # Load a CoA if there's none in current company
+            coa = self.env.ref("l10n_generic_coa.configurable_chart_template", False)
+            if not coa:
+                # Load the first available CoA
+                coa = self.env["account.chart.template"].search(
+                    [("visible", "=", True)], limit=1
+                )
+            coa.try_loading(company=company, install_demo=False)
         test_dir_path = os.path.abspath(os.path.dirname(__file__))
         json_filepath = self.company_values_json_filepath
         with open(json_filepath) as fp:
@@ -708,6 +717,7 @@ class TestL10nEsTicketBAIAPI(common.TransactionCase):
         installation = self.env["tbai.installation"].create(
             {
                 "name": vals.pop("tbai_software_name"),
+                "version": vals.pop("tbai_software_version"),
                 "developer_id": self.env.ref(
                     "l10n_es_ticketbai_api.res_partner_binovo"
                 ).id,

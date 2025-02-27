@@ -3,6 +3,7 @@
 # Copyright 2020 Valentin Vinagre <valent.vinagre@sygel.es>
 # Copyright 2021 Tecnativa - João Marques
 # Copyright 2017-2023 Tecnativa - Pedro M. Baeza
+# Copyright 2023 Moduon Team - Eduardo de Miguel
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html)
 
 import json
@@ -107,7 +108,7 @@ class TestL10nEsAeatSiiBase(TestL10nEsAeatModBase, TestL10nEsAeatCertificateBase
         if extra_vals:
             vals.update(extra_vals)
         invoice = self.env["account.move"].create(vals)
-        result_dict = invoice._get_sii_invoice_dict()
+        result_dict = invoice._get_aeat_invoice_dict()
         path = get_resource_path(module, "tests/json", json_file)
         if not path:
             raise Exception("Incorrect JSON file: %s" % json_file)
@@ -117,24 +118,13 @@ class TestL10nEsAeatSiiBase(TestL10nEsAeatModBase, TestL10nEsAeatCertificateBase
         return invoice
 
     @classmethod
-    def setUpClass(cls):
-        super().setUpClass()
-        cls.maxDiff = None  # needed for the dict comparison
-        cls.partner = cls.env["res.partner"].create(
-            {"name": "Test partner", "vat": "ESF35999705"}
-        )
-        cls.product = cls.env["product.product"].create(
-            {"name": "Test product", "sii_exempt_cause": "E5"}
-        )
-        cls.account_expense = cls.env.ref(
-            "l10n_es.%s_account_common_600" % cls.company.id
-        )
-        cls.invoice = cls.env["account.move"].create(
+    def _create_invoice_for_sii(cls, move_type):
+        return cls.env["account.move"].create(
             {
                 "company_id": cls.company.id,
                 "partner_id": cls.partner.id,
                 "invoice_date": "2018-02-01",
-                "move_type": "out_invoice",
+                "move_type": move_type,
                 "invoice_line_ids": [
                     (
                         0,
@@ -150,6 +140,21 @@ class TestL10nEsAeatSiiBase(TestL10nEsAeatModBase, TestL10nEsAeatCertificateBase
                 ],
             }
         )
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.maxDiff = None  # needed for the dict comparison
+        cls.partner = cls.env["res.partner"].create(
+            {"name": "Test partner", "vat": "ESF35999705"}
+        )
+        cls.product = cls.env["product.product"].create(
+            {"name": "Test product", "sii_exempt_cause": "E5"}
+        )
+        cls.account_expense = cls.env.ref(
+            "l10n_es.%s_account_common_600" % cls.company.id
+        )
+        cls.invoice = cls._create_invoice_for_sii("out_invoice")
         cls.company.write(
             {
                 "sii_enabled": True,
@@ -181,6 +186,25 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
             [("sii_wsdl_out", "!=", False)]
         )
 
+    def test_invoice_search_sii_enabled(self):
+        domain_base = [("id", "=", self.invoice.id)]
+        domain_ok = domain_base + [("sii_enabled", "=", True)]
+        items = self.env["account.move"].search(domain_ok)
+        self.assertIn(self.invoice, items)
+        domain_ko_1 = domain_base + [("sii_enabled", "=", False)]
+        items = self.env["account.move"].search(domain_ko_1)
+        self.assertNotIn(self.invoice, items)
+        domain_ko_2 = domain_base + [("sii_enabled", "!=", True)]
+        items = self.env["account.move"].search(domain_ko_2)
+        self.assertNotIn(self.invoice, items)
+        self.invoice.journal_id.sii_enabled = False
+        items = self.env["account.move"].search(domain_ok)
+        self.assertNotIn(self.invoice, items)
+        items = self.env["account.move"].search(domain_ko_1)
+        self.assertIn(self.invoice, items)
+        items = self.env["account.move"].search(domain_ko_2)
+        self.assertIn(self.invoice, items)
+
     def test_intracomunitary_customer_extracomunitary_delivery(self):
         """Comprobar venta a un cliente intracomunitario enviada al extranjero.
 
@@ -206,7 +230,7 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
             {"partner_id": eu_customer.id, "fiscal_position_id": fp_extra.id}
         )
         invoice.action_post()
-        sii_info = invoice._get_sii_invoice_dict()
+        sii_info = invoice._get_aeat_invoice_dict()
         self.assertEqual(
             sii_info["FacturaExpedida"]["Contraparte"],
             {
@@ -326,33 +350,27 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
                 "sii_description_method": "fixed",
             }
         )
-        invoice_temp = self.invoice.copy()
-        # FIXME: Can we auto-trigger the compute method?
-        invoice_temp._compute_sii_description()
+        self.invoice._compute_sii_description()
         self.assertEqual(
-            invoice_temp.sii_description,
+            self.invoice.sii_description,
             "Test customer header | Test description",
         )
-        invoice_temp = self.invoice.copy(
-            {"move_type": "in_invoice", "journal_id": self.journal_purchase.id}
-        )
-        invoice_temp._compute_sii_description()
+        invoice_temp = self._create_invoice_for_sii("in_invoice")
         self.assertEqual(
             invoice_temp.sii_description,
             "Test supplier header | Test description",
         )
         company.sii_description = False
         company.sii_description_method = "manual"
-        invoice_temp = self.invoice.copy()
-        invoice_temp._compute_sii_description()
-        self.assertEqual(invoice_temp.sii_description, "Test customer header")
-        invoice_temp.sii_description = "Other thing"
-        self.assertEqual(invoice_temp.sii_description, "Other thing")
+        self.invoice.sii_description = "/"
+        self.invoice._compute_sii_description()
+        self.assertEqual(self.invoice.sii_description, "Test customer header")
+        self.invoice.sii_description = "Other thing"
+        self.assertEqual(self.invoice.sii_description, "Other thing")
         company.sii_description_method = "auto"
-        invoice_temp = self.invoice.copy()
-        invoice_temp._compute_sii_description()
+        self.invoice._compute_sii_description()
         self.assertEqual(
-            invoice_temp.sii_description,
+            self.invoice.sii_description,
             "Test customer header | Test line",
         )
 
@@ -368,7 +386,7 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
         company = invoice.company_id
         tax_agency = company.tax_agency_id
         self.sii_cert.company_id.tax_agency_id = tax_agency
-        proxy = invoice._connect_sii(invoice.move_type)
+        proxy = invoice._connect_aeat(invoice.move_type)
         address = proxy._binding_options["address"]
         self.assertTrue(address)
         if company.sii_test and tax_agency:
@@ -389,9 +407,7 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
         self._activate_certificate()
         self.invoice.company_id.sii_test = True
         self._check_tax_agencies(self.invoice)
-        in_invoice = self.invoice.copy(
-            {"move_type": "in_invoice", "journal_id": self.journal_purchase.id}
-        )
+        in_invoice = self._create_invoice_for_sii("in_invoice")
         self._check_tax_agencies(in_invoice)
 
     def test_tax_agencies_production(self):
@@ -399,9 +415,7 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
         self._activate_certificate()
         self.invoice.company_id.sii_test = False
         self._check_tax_agencies(self.invoice)
-        in_invoice = self.invoice.copy(
-            {"move_type": "in_invoice", "journal_id": self.journal_purchase.id}
-        )
+        in_invoice = self._create_invoice_for_sii("in_invoice")
         self._check_tax_agencies(in_invoice)
 
     def test_refund_sii_refund_type(self):
@@ -426,13 +440,13 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
         invoice.move_type = "out_refund"
         self.assertEqual(invoice.sii_refund_type, "I")
 
-    def test_is_sii_simplified_invoice(self):
-        self.assertFalse(self.invoice._is_sii_simplified_invoice())
-        self.partner.sii_simplified_invoice = True
-        self.assertTrue(self.invoice._is_sii_simplified_invoice())
+    def test_is_aeat_simplified_invoice(self):
+        self.assertFalse(self.invoice._is_aeat_simplified_invoice())
+        self.partner.aeat_simplified_invoice = True
+        self.assertTrue(self.invoice._is_aeat_simplified_invoice())
 
-    def test_sii_check_exceptions_case_supplier_simplified(self):
-        self.partner.sii_simplified_invoice = True
+    def test_aeat_check_exceptions_case_supplier_simplified(self):
+        self.partner.aeat_simplified_invoice = True
         invoice = self.env["account.move"].create(
             {
                 "partner_id": self.partner.id,
@@ -441,31 +455,79 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
             }
         )
         with self.assertRaises(exceptions.UserError):
-            invoice._sii_check_exceptions()
+            invoice._aeat_check_exceptions()
+
+    def test_aeat_check_exceptions_case_supplier_on_post(self):
+        """Check sii exceptions when posting supplier bills"""
+        supplier = self.supplier.copy()
+        supplier.country_id = self.env.ref("base.es")
+        supplier.vat = "A46180576"
+        # Extra data without `ref` field
+        extra_data_wo_ref = {
+            "partner_id": supplier.id,
+            "invoice_line_ids": [
+                (
+                    0,
+                    0,
+                    {
+                        "name": "Test line",
+                        "account_id": self.accounts["600000"].id,
+                        "price_unit": 100.0,
+                        "quantity": 1,
+                    },
+                )
+            ],
+        }
+        with self.assertRaises(exceptions.UserError):
+            self._invoice_purchase_create("2018-02-01", extra_vals=extra_data_wo_ref)
+        self.assertTrue(
+            self._invoice_purchase_create(
+                "2018-02-01", extra_vals=dict(extra_data_wo_ref, ref="TEST REF")
+            )
+        )
+
+    def test_unlink_draft_invoice_when_not_sent_to_sii(self):
+        draft_invoice = self.invoice.copy({})
+        draft_invoice.unlink()
+        self.assertFalse(draft_invoice.exists())
 
     def test_unlink_invoice_when_sent_to_sii(self):
-        self.invoice.sii_state = "sent"
+        self.invoice.aeat_state = "sent"
+        self.invoice.button_draft()  # Convert to draft to check only SII exception
         with self.assertRaises(exceptions.UserError):
             self.invoice.unlink()
 
     def test_account_move_sii_write_exceptions(self):
         # out_invoice
-        self.invoice.sii_state = "sent"
+        self.invoice.aeat_state = "sent"
         with self.assertRaises(exceptions.UserError):
             self.invoice.write({"invoice_date": "2022-01-01"})
         with self.assertRaises(exceptions.UserError):
             self.invoice.write({"thirdparty_number": "CUSTOM"})
         # in_invoice
-        in_invoice = self.invoice.copy(
-            {
-                "move_type": "in_invoice",
-                "journal_id": self.journal_purchase.id,
-                "ref": "REF",
-            }
-        )
-        in_invoice.sii_state = "sent"
+        in_invoice = self._create_invoice_for_sii("in_invoice")
+        in_invoice.ref = "REF"
+        in_invoice.aeat_state = "sent"
         partner = self.partner.copy()
         with self.assertRaises(exceptions.UserError):
             in_invoice.write({"partner_id": partner.id})
         with self.assertRaises(exceptions.UserError):
             in_invoice.write({"ref": "REF2"})
+
+    def test_account_move_reversal_out_invoice(self):
+        reversal = (
+            self.env["account.move.reversal"]
+            .with_context(
+                active_id=self.invoice.id,
+                active_model=self.invoice._name,
+                active_ids=self.invoice.ids,
+            )
+            .create(
+                {
+                    "journal_id": self.invoice.journal_id.id,
+                }
+            )
+        )
+        self.assertEqual(reversal.sii_refund_type, "I")
+        self.assertTrue(reversal.sii_refund_type_required)
+        self.assertFalse(reversal.supplier_invoice_number_refund_required)

@@ -1,4 +1,5 @@
 # Copyright 2019 Tecnativa - Carlos Dauden
+# Copyright 2017 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo import fields, models
@@ -15,8 +16,8 @@ class ResPartner(models.Model):
     aeat_identification_type = fields.Selection(
         string="AEAT Identification type",
         help=(
-            "Used to specify an identification type to send to SII. Normally for "
-            "sending national and export invoices to SII where the customer country "
+            "Used to specify an identification type to send to AEAT. Normally for "
+            "sending national and export invoices to AEAT where the customer country "
             "is not Spain, it would calculate an identification type of 04 if the VAT "
             "field is filled and 06 if it was not. This field is to specify "
             "types of 03 through 05, in the event that the customer doesn't identify "
@@ -35,6 +36,17 @@ class ResPartner(models.Model):
     # 02 - NIF - VAT
     # 04 - Official document from the original country
     # 07 - Not registered on census
+    aeat_simplified_invoice = fields.Boolean(
+        string="Simplified invoices in AEAT?",
+        help="Checking this mark, invoices done to this partner will be "
+        "sent to AEAT as simplified invoices.",
+    )
+    aeat_sending_enabled = fields.Boolean(
+        compute="_compute_aeat_sending_enabled",
+    )
+
+    def _compute_aeat_sending_enabled(self):
+        self.aeat_sending_enabled = False
 
     def _map_aeat_country_code(self, country_code, extended=False):
         """Map country codes according the fiscal conditions.
@@ -47,8 +59,26 @@ class ResPartner(models.Model):
         """
         country_code_map = {"EL": "GR"}
         if extended:
-            country_code_map.update({"RE": "FR", "GP": "FR", "MQ": "FR", "GF": "FR"})
+            country_code_map.update(
+                {
+                    "RE": "FR",
+                    "GP": "FR",
+                    "MQ": "FR",
+                    "GF": "FR",
+                    "PF": "FR",
+                    "BL": "FR",
+                    "MF": "FR",
+                    "PM": "FR",
+                    "WF": "FR",
+                }
+            )
         return country_code_map.get(country_code, country_code)
+
+    def _map_aeat_country_iso_code(self, country_id):
+        """Map country ISO code according to AEAT code"""
+        code = country_id.code
+        country_iso_code_map = {"GR": "EL"}
+        return country_iso_code_map.get(code, code)
 
     @ormcache("self.env")
     def _get_aeat_europe_codes(self):

@@ -11,14 +11,14 @@
 # Copyright 2021 Tecnativa - João Marques
 # Copyright 2022 ForgeFlow - Lois Rilo
 # Copyright 2022-2023 Moduon - Eduardo de Miguel
-# Copyright 2017-2023 Tecnativa - Pedro M. Baeza
 # Copyright 2023 Aures Tic - Jose Zambudio <jose@aurestic.es>
 # Copyright 2023 Pol Reig <pol.reig@qubiq.es>
+# Copyright 2017-2024 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
     "name": "Suministro Inmediato de Información en el IVA",
-    "version": "16.0.1.3.0",
+    "version": "16.0.2.5.2",
     "category": "Accounting & Finance",
     "website": "https://github.com/OCA/l10n-spain",
     "author": "Acysos S.L.,"
@@ -36,7 +36,6 @@
     "installable": True,
     "development_status": "Mature",
     "maintainers": ["pedrobaeza"],
-    "external_dependencies": {"python": ["zeep", "requests"]},
     "depends": [
         "account_invoice_refund_link",
         "l10n_es",
